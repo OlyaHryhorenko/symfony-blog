@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello!{% endblock %}
+
+{% block body %}
+
+    {% for post in posts %}
+        {% include '/parts/blog.html.twig' %}
+    {% endfor %}
+{% endblock %}

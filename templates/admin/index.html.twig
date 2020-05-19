@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block header %}
+    <h1>Hello, {{ app.user.login }}!</h1>
+{% endblock %}
+{% block body %}
+    {% if posts %}
+    <p><strong>Watch your posts:</strong></p>
+    {% for post in posts %}
+        {% include '/parts/blog.html.twig' %}
+    {% endfor %}
+        {% else %}
+            <p>Create your first post! <a href="/add">click this</a> </p>
+    {% endif %}
+{% endblock %}

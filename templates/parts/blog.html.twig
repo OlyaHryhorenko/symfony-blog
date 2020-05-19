@@ -1,0 +1,18 @@
+<div class="columns">
+    {% if post.thumbnail %}
+        <div class="img iThree" style="background-image: url({{ asset("uploads/thumbnail/") ~ post.thumbnail  }})"></div>
+    {% else %}
+        <div class="img iThree" style="background-image: url('https://images.unsplash.com/photo-1458791682441-c0fae0292e70?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1016&q=80&cs=tinysrgb')"></div>
+    {% endif %}
+    <div class="teaser">
+        <h3>{{ post.title }}</h3>
+        <h6><span>{{ post.publishedAt|date("m/d/Y") }}</span></h6>
+        <p>{{ post.content|length > 100 ? post.content|slice(0, 100) ~ '...' : post.content  }}</p>
+        <h6>
+            <a href="/post/{{  post.id }}">Read More</a>{%  if app.user %} <span style="color:#fff"> | </span>
+            {% if post.getUser().id == app.user.id %}
+                <a href="/edit/{{ post.id }}">Edit</a>
+            {% endif %}
+            {% endif %}
+        </h6></div>
+</div>

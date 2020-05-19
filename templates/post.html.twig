@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello!{% endblock %}
+
+{% block body %}
+
+    {% if  post is not empty %}
+        <div class="container">
+            <h1>{{ post.title }}</h1>
+            <div class="row flex">
+                <div class="column">
+                    {% if post.categories %}
+                    <ul class="cats">
+                      {% for cat in post.categories %}
+                        <li>{{ cat.name }}</li>
+                    {% endfor %}
+                    </ul>
+                    {% endif %}
+                        <div class="img" style="background-image: url({{ asset('uploads/thumbnail'.post.thumbnail) }})"></div>
+                        <div class="teaser">
+                            <h6><span>{{ post.publishedAt|date("m/d/Y") }}</span></h6>
+                            <p>{{ post.content }}</p>
+                            <p>
+                                {%  if app.user %}
+                                    {% if post.getUser().id == app.user.id %}
+                                        <a href="/edit/{{ post.id }}">Edit</a>
+                                    {% endif %}
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        {% block javascripts %}{% endblock %}
+    {% endif %}
+{% endblock %}
+
+
